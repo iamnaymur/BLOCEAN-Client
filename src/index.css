@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blog-button {
+  text-align: center;
+
+  color: #ffffff; /* Text color */
+  background-color: #000000; /* Black color */
+  transition: background-color 0.3s ease;
+}
+
+.blog-button:hover {
+  background-color: #0d98fc; /* Matching color on hover */
+}
