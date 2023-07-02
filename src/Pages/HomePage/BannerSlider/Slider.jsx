@@ -34,12 +34,12 @@ const Slider = ({ blogs }) => {
         className="mySwiper"
       >
         {blogs?.map((blog) => (
-          <>
+          <div key={blog.id}>
             <SwiperSlide key={blog.id}>
               <div className=" ">
                 <div>
                   <img
-                    className="rounded-3xl hover:-translate-y-2 p-2 transition-all cursor-pointer w-[500px] h-[500px]"
+                    className="rounded-3xl hover:-translate-y-2 p-1 transition-all cursor-pointer w-[500px] h-[500px]"
                     src={blog?.image}
                     alt=""
                   />
@@ -54,7 +54,7 @@ const Slider = ({ blogs }) => {
                 </div>
               </div>
             </SwiperSlide>
-          </>
+          </div>
         ))}
       </Swiper>
     </>

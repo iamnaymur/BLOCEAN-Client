@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -19,15 +20,15 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
-//   const [role, setRole] = useState(null);
+  //   const [role, setRole] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
-//   useEffect(() => {
-//     if (user) {
-//       getUserRole(user?.email).then((data) => setRole(data));
-//     }
-//   }, [user]);
+  //   useEffect(() => {
+  //     if (user) {
+  //       getUserRole(user?.email).then((data) => setRole(data));
+  //     }
+  //   }, [user]);
 
   const signUp = (email, password) => {
     setLoading(true);
@@ -55,15 +56,41 @@ const AuthProviders = ({ children }) => {
     return signOut(auth);
   };
 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //     setLoading(false);
+  //   });
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // });
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
+      //get and set token
+      if (currentUser) {
+        axios
+          .post(`${import.meta.env.VITE_API_URL}/jwt`, {
+            email: currentUser.email,
+          })
+          .then((data) => {
+            // console.log(data.data.token);
+            localStorage.setItem("access-token", data.data.token);
+            setUser(currentUser);
+            setLoading(false);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
+      // setLoading(false);
     });
+
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   const userInfo = {
     user,
