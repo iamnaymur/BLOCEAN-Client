@@ -6,7 +6,7 @@ const BannerSlider = () => {
   // console.log("🚀 ~ file: BannerSlider.jsx:6 ~ BannerSlider ~ blogs:", blogs);
 
   useEffect(() => {
-    fetch("http://localhost:5000/blogs")
+    fetch(`${import.meta.env.VITE_API_URL}/blogs`)
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);

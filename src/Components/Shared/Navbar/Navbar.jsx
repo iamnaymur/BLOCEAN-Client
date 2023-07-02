@@ -13,9 +13,7 @@ const Navbar = () => {
       <li>
         <a>Authors</a>
       </li>
-      <li>
-        <a>Subscribe</a>
-      </li>
+
       <li>
         <a>Contact</a>
       </li>
@@ -32,10 +30,10 @@ const Navbar = () => {
   const handleLogout = () => {
     logOut()
       .then(() => {
-      toast.success('Logout successful')
-    })
-    .catch((error)=>console.log(error))
-  }
+        toast.success("Logout successful");
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="navbar bg-base-100 font-displayOne">
