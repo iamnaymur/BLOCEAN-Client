@@ -13,10 +13,14 @@ const Navbar = () => {
       <li>
         <a>Authors</a>
       </li>
-
       <li>
         <a>Contact</a>
       </li>
+      {user && (
+        <li>
+          <a>Dashboard</a>
+        </li>
+      )}
       <li>
         <input
           type="text"
@@ -76,7 +80,7 @@ const Navbar = () => {
         </div>
         {user && (
           <div className="avatar mx-5">
-            <div className="w-8 rounded-full">
+            <div className="w-10 rounded-full">
               <img src={user?.photoURL} alt="Tailwind-CSS-Avatar-component" />
             </div>
           </div>
@@ -87,7 +91,7 @@ const Navbar = () => {
           </Link>
         ) : (
           <Link
-            to={"/sign-up"}
+            to={"/login"}
             href="#_"
             class="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-lg shadow-inner group"
           >
