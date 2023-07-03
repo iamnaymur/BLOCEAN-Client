@@ -6,6 +6,7 @@ import LoginForm from "../Pages/Login/LoginForm";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AddBlog from "../Pages/Dashboard/Author/AddBlog";
 import EditBlog from "../Pages/Dashboard/Author/EditBlog";
+import UpdateBlogData from "../Pages/Dashboard/Author/UpdateBlogData";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/edit-blog",
         element: <EditBlog />,
+      },
+      {
+        path: "/dashboard/editBlogData/:id",
+        element: <UpdateBlogData />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/editBlogData/${params.id}`),
+
+        // loader:()=>fetch(`${import.meta.env.VITE_API_URL}`)
       },
     ],
   },

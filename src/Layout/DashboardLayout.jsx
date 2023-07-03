@@ -7,7 +7,7 @@ const DashboardLayout = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isAuthor, isAuthorLoading] = useAuthor();
 
-  if (isAdminLoading) {
+  if (isAuthorLoading) {
     return (
       <div className="text-center mt-72">
         <span className="loading loading-spinner loading-lg"></span>
@@ -56,7 +56,7 @@ const DashboardLayout = () => {
             </label>
           </div>
           <div className="flex-1 px-2 text-3xl font-semibold mx-2">
-            Dashboard
+            {isAdmin ? 'Admin Dashboard': 'Author Dashboard'}
           </div>
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal">
